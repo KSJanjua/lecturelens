@@ -1,0 +1,16 @@
+Create {{count}} multiple-choice questions from this lecture excerpt.
+
+Learner profile:
+{{profile}}
+
+Bloom's levels required: {{bloom_mix}}
+Difficulty: {{difficulty}}
+
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+Each question has a stem, exactly 4 options, the index (0-3) of the correct option and a short explanation. Write in {{language}}.
+Reply with JSON:
+{"questions": [{"concept": str, "bloom": "remember|understand|apply", "difficulty": "easy|medium|hard", "stem": str, "options": [str, str, str, str], "answer_index": int, "explanation": str, "ts": "MM:SS"}]}

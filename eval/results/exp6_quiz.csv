@@ -1,0 +1,9 @@
+lecture,variant,generated,passed_first_try,answerability_rate,dropped,tokens,generator,judge
+L3,no CoT,10,10,1.0,0,12260,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L3,CoT,10,10,1.0,0,8250,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L4,no CoT,10,10,1.0,0,8632,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L4,CoT,10,10,1.0,0,12271,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L5,no CoT,10,10,1.0,0,8929,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L5,CoT,10,10,1.0,0,10258,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L6,no CoT,10,10,1.0,0,11234,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L6,CoT,10,10,1.0,0,11992,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite

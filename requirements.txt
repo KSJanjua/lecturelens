@@ -1,0 +1,29 @@
+# Core
+streamlit>=1.40
+pydantic>=2.6
+python-dotenv
+requests
+numpy
+pandas
+
+# Audio / video
+yt-dlp
+imageio-ffmpeg        # bundled ffmpeg when the system has none
+edge-tts
+
+# Models and APIs
+groq
+google-genai
+sentence-transformers
+chromadb              # optional: falls back to a NumPy index if missing
+
+# Exports
+fpdf2
+
+# Evaluation
+jiwer
+rouge-score
+bert-score
+textstat
+matplotlib
+pytest

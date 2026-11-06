@@ -1,0 +1,21 @@
+Write study notes for this part of a lecture using a specific teaching strategy.
+
+Strategy: {{strategy_name}}
+{{strategy_instructions}}
+
+Learner profile:
+{{profile}}
+
+Section title suggestion: {{title}}
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+Reply with JSON:
+{"title": str, "ts": "MM:SS",
+ "bullets": [{"text": str, "ts": "MM:SS"}],
+ "definitions": [{"term": str, "definition": str, "ts": "MM:SS"}],
+ "formulas": [{"expression": str, "meaning": str, "ts": "MM:SS"}],
+ "examples": [str]}
+Use only what the transcript says, and tag each point with the nearest [MM:SS] marker before it. Write in {{language}}.

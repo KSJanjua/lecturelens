@@ -1,0 +1,8 @@
+Write a Mermaid mind map of this whole lecture: the root is the lecture topic, the first level is the main sections, the second level is 2-4 key ideas per section (2-5 words each).
+
+Lecture: {{title}}
+Outline:
+{{outline}}
+
+Rules: start with "mindmap", then "  root((Topic))", indent each level by 2 more spaces, plain text labels without brackets, quotes, parentheses, colons or commas. No code fences.
+Reply with JSON: {"mermaid": "the Mermaid code"}

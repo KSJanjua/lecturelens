@@ -1,0 +1,10 @@
+This Mermaid diagram failed to render.
+
+Diagram ({{kind}}):
+{{code}}
+
+Error:
+{{error}}
+
+Rewrite it so it is valid Mermaid, keeping the same content. Rules: flowchart labels in double quotes like A["text"], no parentheses or extra quotes inside labels; mindmap uses plain indented text; no code fences or styling.
+Reply with JSON: {"mermaid": "the corrected Mermaid code"}

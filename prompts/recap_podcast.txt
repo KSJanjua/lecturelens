@@ -1,0 +1,9 @@
+Write a short two-voice podcast recap of the lecture "{{title}}": a teacher explains, a curious student asks the questions this learner would ask.
+Learner:
+{{profile}}
+
+Lecture notes:
+{{notes}}
+
+Rules: 350 to 450 words in total, 10-16 turns, alternating "teacher" and "student". It will be read by text-to-speech, so no symbols, bullets, markdown or emojis; say formulas in words. End with the teacher listing the 2-3 things to remember. Use only facts from the notes. Language: {{language}}.
+Reply with JSON: {"lines": [{"speaker": "student|teacher", "text": str}, ...]}

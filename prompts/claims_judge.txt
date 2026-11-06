@@ -1,0 +1,15 @@
+Check each claim against the lecture transcript excerpt.
+
+Transcript excerpt:
+"""
+{{transcript}}
+"""
+
+Claims:
+{{claims}}
+
+For each claim decide:
+- "supported": the excerpt states it or it follows directly from what is stated.
+- "contradicted": the excerpt says something incompatible.
+- "not_mentioned": the excerpt does not say it (even if the claim is true in general).
+Reply with JSON: {"verdicts": [{"id": 1, "verdict": "supported|contradicted|not_mentioned", "reason": "short reason"}, ...]} with one entry per claim.

@@ -1,0 +1,18 @@
+A student answered this question wrongly:
+Question: {{stem}}
+Options: {{options}}
+Correct answer: {{correct}}
+Student chose: {{chosen}}
+Concept: {{concept}}
+
+Learner profile:
+{{profile}}
+
+Transcript excerpt about the concept:
+"""
+{{transcript}}
+"""
+
+Write ONE easier follow-up multiple-choice question on the same concept that targets the student's misunderstanding (Bloom's level "remember" or "understand"). Reason step by step in "reasoning" first. Write in {{language}}.
+Reply with JSON:
+{"concept": str, "bloom": str, "difficulty": "easy", "reasoning": str, "stem": str, "options": [str, str, str, str], "answer_index": int, "explanation": str, "ts": "MM:SS"}

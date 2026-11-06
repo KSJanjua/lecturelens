@@ -1,0 +1,18 @@
+Write study notes for this part of a lecture.
+
+Learner profile (adapt depth, vocabulary and emphasis to it):
+{{profile}}
+
+Section title suggestion: {{title}}
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+Reply with JSON matching this schema:
+{"title": str, "ts": "MM:SS where the section starts",
+ "bullets": [{"text": str, "ts": "MM:SS"}],
+ "definitions": [{"term": str, "definition": str, "ts": "MM:SS"}],
+ "formulas": [{"expression": str, "meaning": str, "ts": "MM:SS"}],
+ "examples": [str]}
+Each bullet is one self-contained key point, tagged with the nearest [MM:SS] marker before it in the transcript. Leave a list empty if the transcript has nothing for it. Write in {{language}}.

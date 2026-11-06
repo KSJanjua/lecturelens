@@ -1,0 +1,8 @@
+lecture,strategy,rouge1,rouge2,rougeL,bertscore_f1,faithfulness,claims,unjudged,human_rating,tokens,api_calls,seconds,generator,judge
+L3,zero_shot,0.5336,0.2333,0.2375,0.7973,0.86,50,0,,9846,5,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L3,few_shot,0.4734,0.2157,0.2527,0.8049,0.943,88,0,,9983,5,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L3,cot,0.5249,0.2234,0.2152,0.8037,0.97,66,0,,12185,5,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L3,tot,0.5105,0.2177,0.2264,0.7974,0.936,47,0,,56268,29,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L1,zero_shot,0.4092,0.1632,0.1747,0.7561,0.943,88,0,,12714,6,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L1,few_shot,0.3606,0.1508,0.1749,0.7556,0.955,66,0,,12654,6,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+L1,cot,0.3967,0.1552,0.1687,0.7513,0.946,56,8,,13839,6,0.0,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b

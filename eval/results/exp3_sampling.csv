@@ -1,0 +1,9 @@
+lecture,temperature,top_p,distinct2,faithfulness,unjudged,tokens,generator,judge
+L3,0.2,0.9,0.802,0.955,0,5711,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,0.5,0.9,0.7598,0.878,0,6078,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,0.8,0.9,0.8511,0.931,0,5731,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,1.1,0.9,0.8218,0.967,0,5816,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,0.2,1.0,0.7986,0.969,0,5885,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,0.5,1.0,0.7931,0.892,0,5967,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,0.8,1.0,0.787,0.857,0,5915,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b
+L3,1.1,1.0,0.8066,1.0,0,5984,groq/openai/gpt-oss-20b,groq/qwen/qwen3.8-27b

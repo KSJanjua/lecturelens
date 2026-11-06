@@ -1,0 +1,23 @@
+Create {{count}} multiple-choice questions from this lecture excerpt.
+
+Learner profile:
+{{profile}}
+
+Bloom's levels required: {{bloom_mix}}
+Difficulty: {{difficulty}}
+
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+For EACH question, reason step by step in the "reasoning" field before writing it:
+1. Identify the concept being tested and where it is taught (timestamp).
+2. Write the correct answer, stated the way the lecture states it.
+3. List common misconceptions a student could have about this concept.
+4. Turn the best misconceptions into plausible distractors (not random or joke options).
+Then write the stem, exactly 4 options, the index (0-3) of the correct option, and an explanation that tells the student why the answer is right and why each distractor is wrong.
+Only test what the transcript teaches. Each question must have exactly one defensible answer. Write in {{language}}.
+
+Reply with JSON:
+{"questions": [{"concept": str, "bloom": "remember|understand|apply", "difficulty": "easy|medium|hard", "reasoning": str, "stem": str, "options": [str, str, str, str], "answer_index": int, "explanation": str, "ts": "MM:SS"}]}

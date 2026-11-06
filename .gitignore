@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+cache/
+data/
+eval/data/lectures/
+eval/results/outputs/
+.streamlit/secrets.toml
+
+# Third-party reference material: rebuild with python eval/prepare_dataset.py
+eval/data/raw/
+eval/data/refs/
+
+# Run logs (contain provider error messages and account identifiers)
+eval/results/*_log.txt

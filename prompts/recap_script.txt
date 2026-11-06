@@ -1,0 +1,12 @@
+Write a spoken audio recap of the lecture "{{title}}" for this learner:
+{{profile}}
+
+Lecture notes:
+{{notes}}
+
+The recap is read aloud by a text-to-speech voice, so:
+- 300 to 400 words (2-3 minutes), conversational, as if a friendly teacher is talking.
+- No bullets, symbols, formulas written in symbols, markdown or emojis. Say formulas in words.
+- Start with what the lecture was about, walk through the main ideas in order, and end with the 2-3 things to remember.
+- Language: {{language}}.
+Reply with JSON: {"lines": [{"speaker": "teacher", "text": "paragraph"}, ...]} using 3-6 paragraphs.

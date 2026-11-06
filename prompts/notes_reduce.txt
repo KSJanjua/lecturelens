@@ -1,0 +1,13 @@
+These are the section-by-section notes of one lecture titled "{{title}}".
+
+Learner profile:
+{{profile}}
+
+Notes:
+{{notes}}
+
+Write:
+1. "summary": exactly 5 short lines summarising the whole lecture for this learner, most important idea first.
+2. "glossary": the key terms of the lecture with one-line definitions taken from the notes (at most 15, alphabetical).
+Use only information in the notes. Write in {{language}}.
+Reply with JSON: {"summary": [str, str, str, str, str], "glossary": [{"term": str, "definition": str}]}

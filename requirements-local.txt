@@ -1,0 +1,2 @@
+# Optional: CPU fallback for speech-to-text (pip install -r requirements-local.txt)
+faster-whisper

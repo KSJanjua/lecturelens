@@ -1,0 +1,6 @@
+Split these study notes into atomic factual claims. An atomic claim states exactly one fact that can be checked on its own (for example "Chaining stores colliding keys in a linked list"). Rewrite pronouns so each claim stands alone. Skip headings, questions and opinions. Keep the section number of each claim.
+
+Notes:
+{{notes}}
+
+Reply with JSON: {"claims": [{"section": int, "claim": str}, ...]}

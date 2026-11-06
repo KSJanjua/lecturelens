@@ -1,0 +1,8 @@
+Grade an answer from a lecture Q&A bot.
+
+Question: {{question}}
+Reference answer (written by a person who watched the lecture): {{reference}}
+Bot answer: {{answer}}
+
+Is the bot answer correct and consistent with the reference? A "not covered" reply is correct only if the reference also says the lecture does not cover it.
+Reply with JSON: {"correct": true or false, "reason": "short reason"}

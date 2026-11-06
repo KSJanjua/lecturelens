@@ -1,0 +1,5 @@
+strategy,strategy_label,lectures,rouge1,rouge2,rougeL,bertscore_f1,faithfulness,human_rating,tokens,generator,judge
+zero_shot,Zero-shot,1,0.5336,0.2333,0.2375,0.7973,0.86,,9846,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+few_shot,Few-shot,1,0.4734,0.2157,0.2527,0.8049,0.943,,9983,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+cot,Chain-of-Thought,1,0.5249,0.2234,0.2152,0.8037,0.97,,12185,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b
+tot,Tree-of-Thought (3x2),1,0.5105,0.2177,0.2264,0.7974,0.936,,56268,groq/openai/gpt-oss-120b,groq/qwen/qwen3.8-27b

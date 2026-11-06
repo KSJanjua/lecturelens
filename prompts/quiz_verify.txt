@@ -1,0 +1,11 @@
+Answer these multiple-choice questions about a lecture. Use the transcript excerpt as your only source. Pick the single best option for each.
+
+Transcript:
+"""
+{{transcript}}
+"""
+
+Questions:
+{{questions}}
+
+Reply with JSON: {"answers": [{"id": 1, "answer_index": 0}, ...]} with one entry per question, using option indices 0-3.

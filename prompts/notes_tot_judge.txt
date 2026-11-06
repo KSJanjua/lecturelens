@@ -1,0 +1,22 @@
+You are grading candidate study notes written for one part of a lecture.
+
+Learner profile:
+{{profile}}
+
+Transcript (the only source of truth):
+"""
+{{transcript}}
+"""
+
+Candidates:
+{{candidates}}
+
+Score every candidate from 1 to 10 on each criterion:
+- coverage: includes the important concepts, definitions and examples from the transcript
+- faithfulness: every statement is supported by the transcript (penalise any invented fact heavily)
+- clarity: well organised, concise, easy to revise from
+- profile_fit: depth, vocabulary and emphasis suit the learner profile
+
+Give a one-sentence reason and one concrete improvement ("feedback") for each candidate.
+Reply with JSON:
+{"scores": [{"id": "A", "coverage": 0, "faithfulness": 0, "clarity": 0, "profile_fit": 0, "reason": str, "feedback": str}, ...]}

@@ -1,0 +1,13 @@
+lecture,language,engine,reference,model,wer,seconds,latin_script_share,audio_minutes
+L1,en,api,human captions,whisper-large-v3,0.0304,,0.984,18.7
+L1,en,local,human captions,faster-whisper small,0.0091,631.9,0.984,18.7
+L2,en,api,human captions,whisper-large-v3,0.0386,,0.991,20.5
+L2,en,local,human captions,faster-whisper small,0.0386,848.3,0.993,20.5
+L3,en,api,human captions,whisper-large-v3,0.0286,,0.99,12.8
+L3,en,local,human captions,faster-whisper small,0.0286,481.0,0.995,12.8
+L4,en,api,human captions,whisper-large-v3,0.0729,,0.982,11.9
+L4,en,local,human captions,faster-whisper small,0.0654,537.5,0.984,11.9
+L5,en,api,human captions,whisper-large-v3,0.0495,,0.994,13.2
+L5,en,local,human captions,faster-whisper small,0.0536,427.3,0.995,13.2
+L6,hi,api,youtube-auto (silver),whisper-large-v3,0.6221,,0.355,20.5
+L6,hi,local,youtube-auto (silver),faster-whisper small,0.8342,15017.1,0.166,20.5

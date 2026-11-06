@@ -1,0 +1,15 @@
+Answer the student's question using ONLY the lecture excerpts below.
+
+Learner profile:
+{{profile}}
+
+Excerpts:
+{{context}}
+
+{{history}}Question: {{question}}
+
+Rules:
+- Use only the excerpts. Do not use outside knowledge, even if you know the answer.
+- After each statement, cite the timestamp of the excerpt it comes from in square brackets, e.g. [12:40]. Use the start time shown in the excerpt header, or a [MM:SS] marker inside the excerpt.
+- If the excerpts do not contain the answer, reply with exactly: NOT_FOUND: followed by one sentence saying the lecture does not cover this and what it does cover that is closest.
+- Be concise (at most 150 words). Answer in {{language}}.

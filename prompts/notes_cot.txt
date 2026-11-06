@@ -1,0 +1,25 @@
+Write study notes for this part of a lecture. Think step by step before writing them.
+
+Learner profile:
+{{profile}}
+
+Section title suggestion: {{title}}
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+Reasoning steps (write them in the "reasoning" field):
+1. List the main concepts the lecturer teaches here, in order, with their timestamps.
+2. For each concept, note the definition, any formula and any example the lecturer actually gives.
+3. Decide which points matter most for this learner profile and how deep to go.
+4. Check that every point you plan to write is stated in the transcript.
+
+Then write the notes. Reply with JSON:
+{"reasoning": "your step-by-step analysis",
+ "section": {"title": str, "ts": "MM:SS",
+             "bullets": [{"text": str, "ts": "MM:SS"}],
+             "definitions": [{"term": str, "definition": str, "ts": "MM:SS"}],
+             "formulas": [{"expression": str, "meaning": str, "ts": "MM:SS"}],
+             "examples": [str]}}
+Write the notes in {{language}}.

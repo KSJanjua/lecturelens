@@ -1,0 +1,20 @@
+Improve these study notes using the reviewer's feedback.
+
+Learner profile:
+{{profile}}
+
+Transcript (the only source of truth):
+"""
+{{transcript}}
+"""
+
+Current notes:
+{{notes}}
+
+Reviewer scores: {{scores}}
+Reviewer feedback: {{feedback}}
+
+Fix the weaknesses the reviewer names, remove anything the transcript does not support, and keep what is already good. Keep the timestamps accurate.
+Reply with JSON in the same schema as the current notes:
+{"title": str, "ts": "MM:SS", "bullets": [{"text": str, "ts": "MM:SS"}], "definitions": [{"term": str, "definition": str, "ts": "MM:SS"}], "formulas": [{"expression": str, "meaning": str, "ts": "MM:SS"}], "examples": [str]}
+Write in {{language}}.

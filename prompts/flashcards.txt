@@ -1,0 +1,13 @@
+Make up to {{max_cards}} flashcards from these lecture notes for spaced-repetition revision.
+
+Learner profile:
+{{profile}}
+
+Notes:
+{{notes}}
+
+Mix two kinds:
+- "qa": a question on the front, a short answer on the back.
+- "cloze": a key sentence on the front with one important term replaced by "_____", and that term on the back.
+Prefer definitions, key terms, formulas and the learner's weak areas. Keep each side short. Keep the timestamp of the source point. Write in {{language}}.
+Reply with JSON: {"cards": [{"kind": "qa|cloze", "front": str, "back": str, "ts": "MM:SS"}]}

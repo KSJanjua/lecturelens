@@ -1,0 +1,5 @@
+Below are {{count}} consecutive chunks of one lecture transcript. Give each chunk a short, specific section title (3-8 words) that names the concept it teaches. Write the titles in {{language}} (use English technical terms where the lecturer does).
+
+{{excerpts}}
+
+Reply with JSON: {"titles": ["title for chunk 1", "title for chunk 2", ...]} containing exactly {{count}} titles, in order.

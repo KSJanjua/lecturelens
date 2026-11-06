@@ -1,0 +1,26 @@
+Write study notes for this part of a lecture. First study the worked example of the expected style.
+
+### Example transcript
+[03:10] So a hash table stores key value pairs. The idea is we take the key, run it through a hash function, and that gives us an index into an array. [03:40] Now two keys can land on the same index, that's a collision. One fix is chaining, where each array slot holds a small linked list. Lookup is order one on average, but if everything collides it degrades to order n.
+
+### Example notes
+{"title": "Hash tables and collisions", "ts": "03:10",
+ "bullets": [{"text": "A hash table stores key-value pairs; a hash function maps each key to an array index.", "ts": "03:10"},
+             {"text": "A collision happens when two keys map to the same index.", "ts": "03:40"},
+             {"text": "Chaining resolves collisions by keeping a linked list in each slot.", "ts": "03:40"},
+             {"text": "Lookup is O(1) on average but O(n) in the worst case when all keys collide.", "ts": "03:40"}],
+ "definitions": [{"term": "Collision", "definition": "Two different keys hashing to the same array index.", "ts": "03:40"}],
+ "formulas": [],
+ "examples": []}
+
+### Your task
+Learner profile (adapt depth, vocabulary and emphasis to it):
+{{profile}}
+
+Section title suggestion: {{title}}
+Transcript (with [MM:SS] markers):
+"""
+{{transcript}}
+"""
+
+Reply with JSON in exactly the same schema as the example. Tag every point with the nearest [MM:SS] marker before it. Write in {{language}}.

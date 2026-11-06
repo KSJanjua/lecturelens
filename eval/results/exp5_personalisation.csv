@@ -1,0 +1,5 @@
+lecture,profile,fk_grade,words,bullets,definitions,tokens,generator,judge
+L3,beginner,15.69,876,25,7,7618,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L3,exam revision,15.06,716,26,3,7272,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L6,beginner,12.19,2061,51,25,16973,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L6,exam revision,10.91,1645,44,19,15832,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite

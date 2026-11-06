@@ -1,0 +1,16 @@
+lecture,chunking,chunks,mean_chunk_tokens,rag_accuracy,citation_accuracy,hit_at_1,mrr,hit_at_4,rag_questions
+L1,fixed-1000,5,878,,,1.0,1.0,1.0,6
+L1,fixed-matched,6,732,,,1.0,1.0,1.0,6
+L1,semantic,5,878,,,1.0,1.0,1.0,6
+L2,fixed-1000,5,972,,,0.75,0.8,0.75,4
+L2,fixed-matched,8,608,,,0.5,0.619,0.75,4
+L2,semantic,7,694,,,1.0,1.0,1.0,4
+L3,fixed-1000,4,746,,,0.0,0.444,1.0,3
+L3,fixed-matched,5,597,,,1.0,1.0,1.0,3
+L3,semantic,4,746,,,1.0,1.0,1.0,3
+L4,fixed-1000,4,760,,,0.75,0.875,1.0,5
+L4,fixed-matched,6,506,,,1.0,1.0,1.0,5
+L4,semantic,5,608,,,0.75,0.875,1.0,5
+L5,fixed-1000,4,790,,,0.75,0.812,1.0,4
+L5,fixed-matched,7,452,,,0.75,0.875,1.0,4
+L5,semantic,6,527,,,0.75,0.875,1.0,4

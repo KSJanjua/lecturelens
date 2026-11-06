@@ -1,0 +1,15 @@
+You are turning lecture notes into concept diagrams written in Mermaid code.
+
+Notes:
+{{notes}}
+
+Pick up to {{max_diagrams}} concepts that are clearer as a picture: processes or algorithms (flowchart), hierarchies or classifications (mindmap), interactions between parts over time (sequence). Skip concepts that are not visual.
+
+Mermaid rules (follow them exactly, or the diagram will not render):
+- flowchart: start with "flowchart TD". Node ids are short letters/digits (A, B1). Put every label in double quotes: A["Label text"]. Edge labels: A -->|"label"| B. No parentheses or quotes inside labels other than the wrapping quotes.
+- mindmap: start with "mindmap", then "  root((Topic))", then children indented by 2 more spaces per level. Plain text labels without brackets, quotes or parentheses.
+- sequence: start with "sequenceDiagram", then lines like "Client->>Server: request".
+- No markdown fences, no comments, no styling, no HTML.
+
+Reply with JSON:
+{"diagrams": [{"title": str, "kind": "flowchart|mindmap|sequence", "concept": str, "ts": "MM:SS", "mermaid": "the Mermaid code with \n newlines"}]}
