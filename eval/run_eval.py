@@ -215,27 +215,38 @@ def exp2_prompting(entries, strategies):
     return summary
 
 
-def exp3_sampling(entries, strategy="zero_shot", temps=(0.2, 0.5, 0.8, 1.1), top_ps=(0.9, 1.0)):
+def exp3_sampling(entries, strategy="zero_shot", temps=(0.2, 0.5, 0.8, 1.1), top_ps=(0.9, 1.0), repeats=1):
     print("Experiment 3 - sampling (temperature x top-p)")
     rows = []
     for e in entries:
         lid = ensure_lecture(e)
         chunks = prepare_lecture(lid, language=e.get("language"))
         lang = store.load_meta(lid).language
-        for top_p in top_ps:
-            for t in temps:
-                print(f"  {e['id']} T={t} top_p={top_p}", flush=True)
-                try:
-                    notes, _, cost = notes_run(lid, chunks, NEUTRAL, strategy, temperature=t, top_p=top_p, reduce=False)
-                    report = faith(notes, chunks, lang)
-                except llm.LLMError as exc:
-                    print(f"  stopped (quota/API): {str(exc)[:200]}")
-                    write_csv("exp3_sampling.csv", rows)
-                    return rows
-                rows.append({"lecture": e["id"], "temperature": t, "top_p": top_p,
-                             "distinct2": metrics.distinct_n(notes_to_text(notes), 2),
-                             "faithfulness": report.score, "unjudged": report.unjudged,
-                             "tokens": cost["total_tokens"]})
+        for repeat in range(repeats):
+            for top_p in top_ps:
+                for t in temps:
+                    print(f"  {e['id']} T={t} top_p={top_p} repeat={repeat}", flush=True)
+                    # Repeat 0 is the original run; later repeats draw fresh samples (the judge stays cached per input).
+                    config.CACHE_SALT = f"repeat-{repeat}" if repeat else ""
+                    try:
+                        notes, _, cost = notes_run(lid, chunks, NEUTRAL, strategy, temperature=t, top_p=top_p,
+                                                   reduce=False)
+                    except llm.LLMError as exc:
+                        config.CACHE_SALT = ""
+                        print(f"  stopped (quota/API): {str(exc)[:200]}")
+                        write_csv("exp3_sampling.csv", rows)
+                        return rows
+                    config.CACHE_SALT = ""
+                    try:
+                        report = faith(notes, chunks, lang)
+                    except llm.LLMError as exc:
+                        print(f"  stopped (quota/API): {str(exc)[:200]}")
+                        write_csv("exp3_sampling.csv", rows)
+                        return rows
+                    rows.append({"lecture": e["id"], "temperature": t, "top_p": top_p, "repeat": repeat,
+                                 "distinct2": metrics.distinct_n(notes_to_text(notes), 2),
+                                 "faithfulness": report.score, "unjudged": report.unjudged,
+                                 "tokens": cost["total_tokens"]})
     write_csv("exp3_sampling.csv", rows)
     averaged = []
     for top_p in top_ps:
@@ -315,16 +326,15 @@ def exp4_chunking(entries, use_llm: bool = False):
         ref_tx = resolve_path(e.get("reference_transcript"))
         reference_lines = ref_tx.read_text(encoding="utf-8").splitlines() if ref_tx and ref_tx.suffix == ".txt" else []
         for mode, chunks in (("fixed-1000", fixed), ("fixed-matched", matched), ("semantic", semantic)):
-            if mode == "fixed-matched" and use_llm:
-                continue                      # notes/answers are compared on the plan's two arms only
+            arm_llm = use_llm and mode != "fixed-matched"   # notes/answers on the plan's two arms only
             print(f"  {e['id']} {mode}: {len(chunks)} chunks")
             row = {"lecture": e["id"], "chunking": mode, "chunks": len(chunks)}
             row["mean_chunk_tokens"] = round(sum(estimate_tokens(c.text) for c in chunks) / len(chunks))
-            if ref and use_llm:
+            if ref and arm_llm:
                 notes, _, _ = notes_run(lid, chunks, NEUTRAL, "zero_shot")
                 row["rougeL"] = metrics.rouge(ref.read_text(encoding="utf-8"), notes_to_text(notes), meta.language)["rougeL"]
             if lecture_qs:
-                row.update(_rag_accuracy(lecture_qs, chunks, meta, answers=use_llm, reference_lines=reference_lines))
+                row.update(_rag_accuracy(lecture_qs, chunks, meta, answers=arm_llm, reference_lines=reference_lines))
             rows.append(row)
     write_csv("exp4_chunking.csv", rows, stamp=use_llm)
     return rows
@@ -409,6 +419,7 @@ def main():
     parser.add_argument("--judge", help="provider:model, e.g. groq:qwen/qwen3.8-27b")
     parser.add_argument("--exp4-llm", action="store_true", help="Experiment 4: also generate notes and RAG answers")
     parser.add_argument("--workers", type=int, help="parallel LLM calls (keep low on 8k-TPM free tiers)")
+    parser.add_argument("--repeats", type=int, default=1, help="Experiment 3: samples per setting")
     args = parser.parse_args()
     if args.generator:
         provider, model = args.generator.split(":", 1)
@@ -433,7 +444,7 @@ def main():
         if 2 in args.exp:
             exp2_prompting(entries, args.strategies)
         if 3 in args.exp:
-            exp3_sampling(entries[:args.sampling_lectures])
+            exp3_sampling(entries[:args.sampling_lectures], repeats=args.repeats)
         if 4 in args.exp:
             exp4_chunking(entries, use_llm=args.exp4_llm)
         if 5 in args.exp:

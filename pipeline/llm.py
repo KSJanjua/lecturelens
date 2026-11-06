@@ -249,7 +249,10 @@ def generate(
     top_p = config.TOP_P if top_p is None else top_p
     max_tokens = max_tokens or config.MAX_OUTPUT_TOKENS
 
-    key = sha(provider, model, system or "", prompt, temperature, top_p, json_mode, max_tokens, length=32)
+    parts = [provider, model, system or "", prompt, temperature, top_p, json_mode, max_tokens]
+    if config.CACHE_SALT:                     # repeated sampling runs; unset keeps existing keys valid
+        parts.append(config.CACHE_SALT)
+    key = sha(*parts, length=32)
     path = config.LLM_CACHE_DIR / key[:2] / f"{key}.json"
     use_cache = cache and config.LLM_CACHE_ENABLED
     if use_cache:

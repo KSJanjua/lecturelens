@@ -38,7 +38,7 @@ GEMINI_API_KEY = _env("GEMINI_API_KEY", "") or _env("GOOGLE_API_KEY", "")
 
 # ---------------------------------------------------------------- models
 # Model names change often on free tiers: check them on Day 1 and override in .env.
-LLM_PROVIDER = _env("LLM_PROVIDER", "gemini")          # gemini | groq
+LLM_PROVIDER = _env("LLM_PROVIDER", "groq")            # groq | gemini
 GEMINI_MODEL = _env("GEMINI_MODEL", "gemini-3.5-flash")
 GEMINI_SMALL_MODEL = _env("GEMINI_SMALL_MODEL", "gemini-3.1-flash-lite")   # judge when Gemini is the only key
 GROQ_MODEL = _env("GROQ_MODEL", "openai/gpt-oss-120b")
@@ -115,6 +115,7 @@ TTS_VOICES = {
 
 # ---------------------------------------------------------------- LLM reliability
 LLM_CACHE_ENABLED = _env("LLM_CACHE_ENABLED", True, bool)
+CACHE_SALT = ""                          # set per repeat to draw fresh samples instead of cached ones
 LLM_MAX_RETRIES = 6
 RATE_LIMIT_MAX_WAIT = 600              # seconds to keep waiting out per-minute limits
 LLM_BACKOFF_BASE = 2.0                    # seconds; doubles on each retry
