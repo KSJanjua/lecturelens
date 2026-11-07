@@ -25,7 +25,7 @@
 | L3 | tot | 0.5105 | 0.2177 | 0.2264 | 0.7974 | 0.936 | 47 | 0 |  | 56268 | 29 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 | L1 | zero_shot | 0.4092 | 0.1632 | 0.1747 | 0.7561 | 0.943 | 88 | 0 |  | 12714 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 | L1 | few_shot | 0.3606 | 0.1508 | 0.1749 | 0.7556 | 0.955 | 66 | 0 |  | 12654 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
-| L1 | cot | 0.3967 | 0.1552 | 0.1687 | 0.7513 | 0.946 | 56 | 8 |  | 13839 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L1 | cot | 0.3967 | 0.1552 | 0.1687 | 0.7513 | 0.953 | 64 | 0 |  | 13839 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 
 ### exp2_summary
 
@@ -77,6 +77,10 @@
 | L3 | exam revision | 15.06 | 716 | 26 | 3 | 7272 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
 | L6 | beginner | 12.19 | 2061 | 51 | 25 | 16973 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
 | L6 | exam revision | 10.91 | 1645 | 44 | 19 | 15832 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L4 | beginner | 14.11 | 1238 | 43 | 7 | 9542 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L4 | exam revision | 14.87 | 996 | 34 | 8 | 8891 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L5 | beginner | 13.35 | 1127 | 35 | 19 | 10589 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L5 | exam revision | 12.78 | 887 | 31 | 14 | 9794 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
 
 ### exp6_quiz
 
@@ -90,3 +94,7 @@
 | L5 | CoT | 10 | 10 | 1.0 | 0 | 10258 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
 | L6 | no CoT | 10 | 10 | 1.0 | 0 | 11234 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
 | L6 | CoT | 10 | 10 | 1.0 | 0 | 11992 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L1 | no CoT | 10 | 9 | 0.9 | 0 | 17630 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L1 | CoT | 10 | 10 | 1.0 | 0 | 11625 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L2 | no CoT | 10 | 10 | 1.0 | 0 | 11713 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |
+| L2 | CoT | 10 | 10 | 1.0 | 0 | 12721 | groq/openai/gpt-oss-20b | gemini/gemini-3.5-flash-lite |

@@ -1,0 +1,31 @@
+claim,main_judge,cross_judge,cross_model
+Layered networks are useful for image tasks and other domains such as speech parsing.,supported,supported,gemini:gemini-3.1-flash-lite
+"The formula a = σ(z) = 1/(1+e^{-z}) gives the sigmoid activation that squashes the weighted sum into the interval [0,1].",not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+"Activations in one layer determine activations in the next layer, for example a neuron in layer 2 detecting an edge in a specific region.",supported,supported,gemini:gemini-3.1-flash-lite
+"The sigmoid (logistic) function maps any real number to a value between 0 and 1, with very negative inputs near 0, very positive inputs near 1, and a smooth increase around 0.",supported,supported,gemini:gemini-3.1-flash-lite
+"The sigmoid (logistic) function squashes any real‑valued weighted sum into the range 0–1, serving as the neuron’s activation.",supported,supported,gemini:gemini-3.1-flash-lite
+"The formula z = Σ_i (w_i * a_i) + b defines the weighted sum as the sum over all inputs i of weight w_i times activation a_i, plus bias b.",not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+The sigmoid function σ(z)=1/(1+e^{-z}) maps any real input to a value between 0 and 1.,not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+"Neural network is a mathematical model inspired by the brain’s structure, used to map inputs like pixel grids to outputs like digit labels.",not_mentioned,supported,gemini:gemini-3.1-flash-lite
+"A bias vector is a vector containing the bias term for each neuron in the next layer, added after the matrix‑vector product.",supported,supported,gemini:gemini-3.1-flash-lite
+"The sigmoid function is an element‑wise non‑linear function σ(x)=1/(1+e⁻ˣ) that squashes each component of a vector into the interval (0,1).",not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+Backpropagation efficiently computes the gradient of the cost function for all weights and biases.,contradicted,contradicted,gemini:gemini-3.1-flash-lite
+The averaged nudges correspond loosely to the negative gradient of the cost function.,contradicted,supported,gemini:gemini-3.1-flash-lite
+Gradient descent cares about both the direction of each component’s contribution to the overall cost.,supported,supported,gemini:gemini-3.1-flash-lite
+A bias is a constant term added to the weighted sum before applying the activation function; it can be adjusted to shift the neuron's output up or down.,not_mentioned,supported,gemini:gemini-3.1-flash-lite
+Gradient Descent is an optimization method that updates weights and biases in the direction that most reduces the cost function.,not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+A local minimum is a point on the cost surface where small changes to parameters do not decrease the cost; SGD aims to converge to such a point.,not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+"By repeatedly processing all mini‑batches and updating parameters, SGD converges toward a local minimum of the cost function, yielding good performance on the training data.",supported,supported,gemini:gemini-3.1-flash-lite
+A local minimum is a point on the cost surface where small changes to parameters do not decrease the cost further; SGD aims to converge to such a point.,not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+Backpropagation is an algorithm that efficiently computes the gradient of the cost function by propagating error information backward through the network layers.,not_mentioned,supported,gemini:gemini-3.1-flash-lite
+"Each neuron computes a weighted sum of inputs, adds a bias, and applies a sigmoid or ReLU to produce an activation between 0 and 1.",contradicted,not_mentioned,gemini:gemini-3.1-flash-lite
+Each neuron computes a weighted sum of its inputs plus a bias and passes it through a sigmoid or ReLU to produce an activation between 0 and 1.,contradicted,not_mentioned,gemini:gemini-3.1-flash-lite
+"Weights and biases are learned automatically, enabling the network to capture hierarchical features like edges and loops.",not_mentioned,supported,gemini:gemini-3.1-flash-lite
+"Understanding activations, biases, and Hebbian‑like weight changes aids intuition.",not_mentioned,not_mentioned,gemini:gemini-3.1-flash-lite
+Weights and biases are updated by aggregating the influence of each training example.,supported,supported,gemini:gemini-3.1-flash-lite
+An activation vector is a column vector containing all neuron activations from one layer.,supported,supported,gemini:gemini-3.1-flash-lite
+All activations from one layer are organized into a column vector.,supported,supported,gemini:gemini-3.1-flash-lite
+The output layer has 10 neurons representing digit classes.,supported,supported,gemini:gemini-3.1-flash-lite
+Negative gradient is the vector of partial derivatives pointing in the direction of steepest decrease of the cost function.,not_mentioned,supported,gemini:gemini-3.1-flash-lite
+"A single training example’s wishes would bias the network toward that class, so the process is repeated for every example and the nudges are averaged.",supported,supported,gemini:gemini-3.1-flash-lite
+"The first layer of the network, consisting of 784 neurons, is called the input layer.",supported,supported,gemini:gemini-3.1-flash-lite

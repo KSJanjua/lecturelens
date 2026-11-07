@@ -1,4 +1,4 @@
-# LectureLens: pilot results (6 Nov 2026)
+# LectureLens: pilot results (updated 7 Nov 2026)
 
 All numbers below come from real runs of the pipeline on six real lectures. Raw CSVs are in this folder,
 plots in `plots/`, generated notes and judge verdicts in `outputs/`. Every experiment lists the models it
@@ -71,7 +71,7 @@ strategies); L1 has three of four strategies. The judge excludes claims it could
 | Chain-of-Thought | 0.215 | 0.804 | **0.970** | 66 | 12,185 |
 | Tree-of-Thought (3×2) | 0.226 | 0.797 | 0.936 | 47 | 56,268 |
 
-L1 (partial): faithfulness zero-shot 0.943, few-shot 0.955, CoT 0.946 (8 claims unjudged).
+L1 (partial, ToT still running): faithfulness zero-shot 0.943, few-shot 0.955, CoT 0.953 (all claims judged).
 
 ![Strategy quality](plots/exp2_strategy_quality.png)
 ![Faithfulness vs cost](plots/exp2_faithfulness_vs_cost.png)
@@ -121,39 +121,59 @@ and answer accuracy per chunking) has not run yet.
 
 ## Experiment 5: personalisation
 
-Generator `gpt-oss-20b`, zero-shot notes for two learner profiles.
+Generator `gpt-oss-20b`, zero-shot notes for two learner profiles, four lectures (one Hindi).
 
 | Lecture | Profile | Words | Bullets | Definitions | FK grade |
 |---|---|---|---|---|---|
 | L3 | Beginner | 876 | 25 | 7 | 15.7 |
 | L3 | Exam revision | 716 | 26 | 3 | 15.1 |
+| L4 | Beginner | 1,238 | 43 | 7 | 14.1 |
+| L4 | Exam revision | 996 | 34 | 8 | 14.9 |
+| L5 | Beginner | 1,127 | 35 | 19 | 13.4 |
+| L5 | Exam revision | 887 | 31 | 14 | 12.8 |
 | L6 (Hindi) | Beginner | 2,061 | 51 | 25 | 12.2 |
 | L6 (Hindi) | Exam revision | 1,645 | 44 | 19 | 10.9 |
+| **Mean** | **Beginner** | **1,326** | **38.5** | **14.5** | **13.8** |
+| **Mean** | **Exam revision** | **1,061** | **33.8** | **11.0** | **13.4** |
 
-The profile clearly conditions the output: beginner notes are 22–25% longer and contain more definitions.
-The Flesch-Kincaid grade is slightly **higher** for beginners, because FK rewards short sentences and the
-"detailed" beginner explanations use longer ones. FK is a weak proxy for conceptual difficulty here.
+The profile clearly conditions the output: on every lecture the beginner notes are longer (+25% words on
+average, 22–27% per lecture) and, in total, contain more definitions (58 vs 44). The Flesch-Kincaid grade
+does not move consistently (higher for beginners on 3 of 4 lectures), because FK rewards short sentences and
+the "detailed" beginner explanations use longer ones. FK is a weak proxy for conceptual difficulty here.
 
 ## Experiment 6: quiz quality, with vs without Chain-of-Thought
 
 Generator `gpt-oss-20b`, verifier `gemini-3.5-flash-lite` (answers each question without seeing the key).
 
-| Variant | Questions | Passed self-verification | Mean tokens per lecture |
-|---|---|---|---|
-| No CoT | 40 | 40 (100%) | 10,264 |
-| CoT | 40 | 40 (100%) | 10,693 |
+All six lectures, 10 questions per lecture and variant.
 
-Both variants hit the ceiling: every question generated from the transcript was answerable by the verifier
-reading the same transcript. Self-verification therefore cannot separate the variants on these lectures.
-The difference the plan expects (distractor quality) needs the human ratings: the 80 questions are in
-`exp6_questions_for_rating.csv`, with the variant hidden in the item code.
+| Variant | Questions | Passed self-verification first time | Mean tokens per lecture |
+|---|---|---|---|
+| No CoT | 60 | 59 (98.3%) | 11,733 |
+| CoT | 60 | 60 (100%) | 11,186 |
+
+Both variants are at the ceiling: almost every question generated from the transcript was answerable by the
+verifier reading the same transcript (the one failure, on L1, was regenerated and then passed).
+Self-verification cannot separate the variants on these lectures. The difference the plan expects
+(distractor quality) needs the human ratings: the 120 questions are in `exp6_questions_for_rating.csv`,
+with the variant hidden in the item code.
 
 ## LLM-as-judge validation
 
-*Pending.* A stratified sample of 40 verdicts from the Experiment 2 judge (`qwen3.8-27b`) is being
-re-judged by a model from a different family (`gemini-3.8-flash`) with
-`python eval/judge_agreement.py crosscheck --n 40`; agreement and Cohen's kappa will be reported here.
-Hand-labelling 20 verdicts (`judge_agreement.py export` / `score`) remains a manual step.
+A stratified sample of 30 claim verdicts from the Experiment 2 judge (`qwen3.8-27b`) was re-judged by a
+model from a third family (`gemini-3.1-flash-lite`), with the same evidence and prompt
+(`judge_agreement.py crosscheck`, results in `judge_crosscheck.csv`).
+
+| | Cross-judge: supported | not mentioned | contradicted |
+|---|---|---|---|
+| **Main judge: supported** | 13 | 0 | 0 |
+| **not mentioned** | 5 | 8 | 0 |
+| **contradicted** | 1 | 2 | 1 |
+
+Exact agreement **73%**, supported-vs-not agreement **80%**, Cohen's kappa **0.54** (moderate). Every
+disagreement goes the same way: the main judge is the stricter of the two (it never calls a claim supported
+when the cross-judge does not). Faithfulness scores in this report are therefore conservative. Hand-labelling
+20 verdicts (`judge_agreement.py export` / `score`) is still needed to say which judge is closer to a person.
 
 ## Bugs found and fixed by running on real data
 
@@ -163,16 +183,14 @@ Hand-labelling 20 verdicts (`judge_agreement.py export` / `score`) remains a man
 - Groq counts `max_tokens` against the per-minute budget up front, so judge calls now use small per-task caps.
 - Quiz verification passed questions silently when the verifier was unreachable; they are now marked unverified.
 - faster-whisper 1.2.1 fails with current PyAV; audio is now passed as samples.
+- Provider fallback could silently swap the judge for the generator model; it is now disabled in experiments
+  and in the judge cross-check.
 
 ## To complete the full plan
 
-Re-run these when the daily quotas have recovered; cached work is skipped:
-
-```bash
-python eval/run_eval.py --exp 2 --lectures L3 L1 L2 --generator groq:openai/gpt-oss-120b --judge groq:qwen/qwen3.8-27b --workers 2
-python eval/run_eval.py --exp 4 --exp4-llm --lectures L1 L2 L3 L4 L5 --generator groq:openai/gpt-oss-120b --judge groq:qwen/qwen3.8-27b --workers 2
-python eval/run_eval.py --exp 3 --lectures L3 L1 --sampling-lectures 2 --generator groq:openai/gpt-oss-20b --judge groq:qwen/qwen3.8-27b --workers 2
-```
+`python eval/run_pending.py` runs everything that is left, in order, waiting out daily quotas; cached work
+is skipped. Remaining: Experiment 2 (ToT on L1, all strategies on L2), the LLM half of Experiment 4, the
+demo study kits (`scripts/build_demo_kits.py`) and Experiment 3 repeats (3 samples per setting).
 
 Still manual by design: human ratings (Google Form, `eval/human_eval.py`) and hand-labelling 20 judge
 verdicts (`eval/judge_agreement.py export` / `score`).

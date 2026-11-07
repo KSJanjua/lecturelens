@@ -24,7 +24,7 @@ from pipeline.utils import read_json  # noqa: E402
 PY = sys.executable
 RESULTS = config.RESULTS_DIR
 GEN, JUDGE = "groq:openai/gpt-oss-120b", "groq:qwen/qwen3.8-27b"
-CROSS_MODELS = ["gemini:gemini-3.7-flash", "gemini:gemini-3.5-flash-lite", "groq:openai/gpt-oss-20b"]
+CROSS_MODELS = ["gemini:gemini-3.1-flash-lite", "gemini:gemini-3.7-flash", "gemini:gemini-3.5-flash-lite"]
 
 
 def rows(name):

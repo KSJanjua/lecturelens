@@ -3,3 +3,7 @@ L3,beginner,15.69,876,25,7,7618,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-
 L3,exam revision,15.06,716,26,3,7272,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
 L6,beginner,12.19,2061,51,25,16973,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
 L6,exam revision,10.91,1645,44,19,15832,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L4,beginner,14.11,1238,43,7,9542,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L4,exam revision,14.87,996,34,8,8891,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L5,beginner,13.35,1127,35,19,10589,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L5,exam revision,12.78,887,31,14,9794,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite

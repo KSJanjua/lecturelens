@@ -7,3 +7,7 @@ L5,no CoT,10,10,1.0,0,8929,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
 L5,CoT,10,10,1.0,0,10258,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
 L6,no CoT,10,10,1.0,0,11234,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
 L6,CoT,10,10,1.0,0,11992,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L1,no CoT,10,9,0.9,0,17630,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L1,CoT,10,10,1.0,0,11625,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L2,no CoT,10,10,1.0,0,11713,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite
+L2,CoT,10,10,1.0,0,12721,groq/openai/gpt-oss-20b,gemini/gemini-3.5-flash-lite

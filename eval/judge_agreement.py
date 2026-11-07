@@ -99,6 +99,7 @@ def crosscheck(n: int, seed: int, model: str):
     from pipeline.schemas import Verdicts
 
     provider, model_name = model.split(":", 1)
+    config.LLM_FALLBACK = False      # a fallback model would silently replace the second judge
     groups: dict[str, list[dict]] = {}
     for claim, evidence in _sample(n, seed, experiments_only=True):
         groups.setdefault(evidence, []).append(claim)
