@@ -70,8 +70,14 @@ def _judge(claims: list[ExtractedClaim], evidence: list[Chunk]) -> list[tuple[st
     except llm.LLMError as exc:
         return [("error", f"judge failed: {str(exc)[:200]}")] * len(claims)
     by_id = {v.id: v for v in result.verdicts}
-    return [(_normalise(by_id[i + 1].verdict), by_id[i + 1].reason) if i + 1 in by_id
-            else ("error", "no verdict returned") for i in range(len(claims))]
+    verdicts = [(_normalise(by_id[i + 1].verdict), by_id[i + 1].reason) if i + 1 in by_id
+                else ("error", "no verdict returned") for i in range(len(claims))]
+    missing = [i for i, (verdict, _) in enumerate(verdicts) if verdict == "error"]
+    if missing and len(missing) < len(claims):
+        # The reply skipped some claims; ask again about just those (a new prompt, so not a cache replay).
+        for i, again in zip(missing, _judge([claims[i] for i in missing], evidence)):
+            verdicts[i] = again
+    return verdicts
 
 
 def check_notes(notes: Notes, chunks: list[Chunk], language: str = "en") -> FaithfulnessReport:

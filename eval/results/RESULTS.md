@@ -35,10 +35,22 @@ Everything is cached, so re-running the same commands resumes where the quota st
 |---|---|
 | Ingest + transcription | 6 lectures (97 min) downloaded, converted and transcribed by the Whisper API |
 | Topic-aware chunking | 4–12 chunks per lecture; boundaries fall on topic changes (e.g. L5 splits at "Calvin Cycle" and "RuBisCo") |
-| Full study kit (L3) | ToT notes (4 sections, 27 bullets), 6 CoT quiz questions (6/6 passed self-verification), 30 flashcards, 4 diagrams + mind map (4/4 valid Mermaid on first try), 425-word audio recap (MP3), faithfulness 93% |
+| Indexing | All chunks embedded and stored in ChromaDB with their timestamps |
 
-The L3 kit was a functional end-to-end check: its generator switched model mid-run when the Gemini quota
-ran out, so its numbers are not used as experimental results.
+**Demo study kits** (`scripts/build_demo_kits.py`; generator `gpt-oss-120b`, judge `qwen3.8-27b`, Tree-of-Thought
+notes). Both load instantly in the app from the *Saved study kits* menu, with no API calls.
+
+| | L3 Backpropagation, beginner | L5 Photosynthesis, exam tomorrow |
+|---|---|---|
+| Notes | 4 sections, 34 bullets, 12 glossary terms | 6 sections, 34 bullets, 10 glossary terms |
+| Quiz (CoT) | 6 questions, 6/6 passed self-verification | 12 questions, 12/12 passed |
+| Flashcards | 29 | 28 |
+| Diagrams | mind map + 3, all valid Mermaid on first try | mind map + 4, all valid on first try |
+| Audio recap | 378 words, 0.9 MB MP3 | 319 words, 0.9 MB MP3 |
+| Faithfulness | 0.948 (55 of 58 claims supported) | 0.919 (57 of 62) |
+| Tokens | 104K (58% of them for ToT notes) | 123K (63% for ToT notes) |
+
+The profile shows through: the exam-revision learner gets twice as many quiz questions and a shorter recap.
 
 ## Experiment 1: transcription accuracy (WER, lower is better)
 
@@ -62,13 +74,13 @@ ran out, so its numbers are not used as experimental results.
 ## Experiment 2: prompting strategies (the main result)
 
 Generator `gpt-oss-120b`, judge `qwen3.8-27b`, neutral learner profile, the three lectures with reference
-notes (L1–L3). Claims the judge could not assess are excluded and counted ("unjudged": 1 of 863 claims).
+notes (L1–L3). Every one of the 864 extracted claims was judged.
 
 **Mean over L1–L3**
 
 | Strategy | ROUGE-L | BERTScore F1 | Faithfulness | Tokens per lecture |
 |---|---|---|---|---|
-| Zero-shot | 0.200 | **0.782** | 0.908 | 12,482 |
+| Zero-shot | 0.200 | **0.782** | 0.909 | 12,482 |
 | Few-shot | **0.207** | 0.780 | 0.923 | 12,815 |
 | Chain-of-Thought | 0.190 | 0.779 | **0.951** | 14,533 |
 | Tree-of-Thought (3×2) | 0.195 | 0.776 | 0.908 | 76,182 |
@@ -77,7 +89,7 @@ notes (L1–L3). Claims the judge could not assess are excluded and counted ("un
 
 | Strategy | L1 | L2 | L3 |
 |---|---|---|---|
-| Zero-shot | 0.943 | 0.922 | 0.860 |
+| Zero-shot | 0.943 | 0.923 | 0.860 |
 | Few-shot | **0.955** | 0.871 | 0.943 |
 | Chain-of-Thought | 0.953 | **0.929** | **0.970** |
 | Tree-of-Thought (3×2) | 0.913 | 0.875 | 0.936 |
@@ -88,7 +100,7 @@ notes (L1–L3). Claims the judge could not assess are excluded and counted ("un
 - **Chain-of-Thought gives the most faithful notes**: best mean (0.951), best on two lectures and within
   0.002 of the best on the third, and above zero-shot on all three, for only ~16% more tokens.
 - **Tree-of-Thought does not pay off here**: about 6× the tokens of zero-shot for the same mean faithfulness
-  (0.908). Its candidates are generated at temperature 0.8 for diversity, and the judge-and-refine loop does not
+  (0.908 vs 0.909). Its candidates are generated at temperature 0.8 for diversity, and the judge-and-refine loop does not
   fully remove what that adds; a single careful CoT pass is both cheaper and more faithful.
 - Few-shot is best on word overlap (ROUGE-L), but its faithfulness varies most between lectures.
 - ROUGE-L and BERTScore barely separate the strategies: the reference is the author's prose lesson, not
