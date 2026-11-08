@@ -1,4 +1,4 @@
-# LectureLens: pilot results (updated 7 Nov 2026)
+# LectureLens: results (updated 8 Nov 2026)
 
 All numbers below come from real runs of the pipeline on six real lectures. Raw CSVs are in this folder,
 plots in `plots/`, generated notes and judge verdicts in `outputs/`. Every experiment lists the models it
@@ -61,28 +61,40 @@ ran out, so its numbers are not used as experimental results.
 
 ## Experiment 2: prompting strategies (the main result)
 
-Generator `gpt-oss-120b`, judge `qwen3.8-27b`, neutral learner profile. Complete for **L3** (all four
-strategies); L1 has three of four strategies. The judge excludes claims it could not assess ("unjudged").
+Generator `gpt-oss-120b`, judge `qwen3.8-27b`, neutral learner profile, the three lectures with reference
+notes (L1–L3). Claims the judge could not assess are excluded and counted ("unjudged": 1 of 863 claims).
 
-| Strategy | ROUGE-L | BERTScore F1 | Faithfulness | Claims checked | Tokens |
-|---|---|---|---|---|---|
-| Zero-shot | 0.238 | 0.797 | 0.860 | 50 | 9,846 |
-| Few-shot | **0.253** | **0.805** | 0.943 | 88 | 9,983 |
-| Chain-of-Thought | 0.215 | 0.804 | **0.970** | 66 | 12,185 |
-| Tree-of-Thought (3×2) | 0.226 | 0.797 | 0.936 | 47 | 56,268 |
+**Mean over L1–L3**
 
-L1 (partial, ToT still running): faithfulness zero-shot 0.943, few-shot 0.955, CoT 0.953 (all claims judged).
+| Strategy | ROUGE-L | BERTScore F1 | Faithfulness | Tokens per lecture |
+|---|---|---|---|---|
+| Zero-shot | 0.200 | **0.782** | 0.908 | 12,482 |
+| Few-shot | **0.207** | 0.780 | 0.923 | 12,815 |
+| Chain-of-Thought | 0.190 | 0.779 | **0.951** | 14,533 |
+| Tree-of-Thought (3×2) | 0.195 | 0.776 | 0.908 | 76,182 |
+
+**Faithfulness per lecture**
+
+| Strategy | L1 | L2 | L3 |
+|---|---|---|---|
+| Zero-shot | 0.943 | 0.922 | 0.860 |
+| Few-shot | **0.955** | 0.871 | 0.943 |
+| Chain-of-Thought | 0.953 | **0.929** | **0.970** |
+| Tree-of-Thought (3×2) | 0.913 | 0.875 | 0.936 |
 
 ![Strategy quality](plots/exp2_strategy_quality.png)
 ![Faithfulness vs cost](plots/exp2_faithfulness_vs_cost.png)
 
-- Every structured strategy beat zero-shot on faithfulness on L3 (0.94–0.97 vs 0.86).
-- **Tree-of-Thought cost 5.7× the tokens of zero-shot without beating CoT or few-shot** on this lecture.
-  Its search improved faithfulness over zero-shot, but a single CoT pass got there more cheaply.
+- **Chain-of-Thought gives the most faithful notes**: best mean (0.951), best on two lectures and within
+  0.002 of the best on the third, and above zero-shot on all three, for only ~16% more tokens.
+- **Tree-of-Thought does not pay off here**: about 6× the tokens of zero-shot for the same mean faithfulness
+  (0.908). Its candidates are generated at temperature 0.8 for diversity, and the judge-and-refine loop does not
+  fully remove what that adds; a single careful CoT pass is both cheaper and more faithful.
+- Few-shot is best on word overlap (ROUGE-L), but its faithfulness varies most between lectures.
 - ROUGE-L and BERTScore barely separate the strategies: the reference is the author's prose lesson, not
-  bullet notes, so word overlap is low for every strategy.
-- This is one complete lecture. Strategy differences of a few points need L1 and L2 to finish before
-  they can be called results.
+  bullet notes, so overlap is low for every strategy. Faithfulness is the more informative metric here.
+- Three lectures is a small sample: CoT beating zero-shot on 3 of 3 lectures is a consistent direction, not
+  a statistically significant result (sign test p = 0.125). Human ratings would strengthen it.
 
 ## Experiment 3: sampling (temperature × top-p)
 
@@ -189,8 +201,8 @@ when the cross-judge does not). Faithfulness scores in this report are therefore
 ## To complete the full plan
 
 `python eval/run_pending.py` runs everything that is left, in order, waiting out daily quotas; cached work
-is skipped. Remaining: Experiment 2 (ToT on L1, all strategies on L2), the LLM half of Experiment 4, the
-demo study kits (`scripts/build_demo_kits.py`) and Experiment 3 repeats (3 samples per setting).
+is skipped. Remaining: the LLM half of Experiment 4, the demo study kits (`scripts/build_demo_kits.py`) and
+Experiment 3 repeats (3 samples per setting).
 
 Still manual by design: human ratings (Google Form, `eval/human_eval.py`) and hand-labelling 20 judge
 verdicts (`eval/judge_agreement.py export` / `score`).

@@ -26,15 +26,20 @@
 | L1 | zero_shot | 0.4092 | 0.1632 | 0.1747 | 0.7561 | 0.943 | 88 | 0 |  | 12714 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 | L1 | few_shot | 0.3606 | 0.1508 | 0.1749 | 0.7556 | 0.955 | 66 | 0 |  | 12654 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 | L1 | cot | 0.3967 | 0.1552 | 0.1687 | 0.7513 | 0.953 | 64 | 0 |  | 13839 | 6 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L1 | tot | 0.4013 | 0.1612 | 0.1704 | 0.7558 | 0.913 | 69 | 0 |  | 77777 | 36 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L2 | zero_shot | 0.5502 | 0.2116 | 0.1875 | 0.7913 | 0.922 | 90 | 1 |  | 14885 | 8 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L2 | few_shot | 0.5381 | 0.21 | 0.1945 | 0.7799 | 0.871 | 70 | 0 |  | 15809 | 8 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L2 | cot | 0.5643 | 0.2048 | 0.1855 | 0.7818 | 0.929 | 84 | 0 |  | 17574 | 8 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| L2 | tot | 0.5534 | 0.1961 | 0.187 | 0.7747 | 0.875 | 80 | 0 |  | 94501 | 50 | 0.0 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 
 ### exp2_summary
 
 | strategy | strategy_label | lectures | rouge1 | rouge2 | rougeL | bertscore_f1 | faithfulness | human_rating | tokens | generator | judge |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| zero_shot | Zero-shot | 1 | 0.5336 | 0.2333 | 0.2375 | 0.7973 | 0.86 |  | 9846 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
-| few_shot | Few-shot | 1 | 0.4734 | 0.2157 | 0.2527 | 0.8049 | 0.943 |  | 9983 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
-| cot | Chain-of-Thought | 1 | 0.5249 | 0.2234 | 0.2152 | 0.8037 | 0.97 |  | 12185 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
-| tot | Tree-of-Thought (3x2) | 1 | 0.5105 | 0.2177 | 0.2264 | 0.7974 | 0.936 |  | 56268 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| zero_shot | Zero-shot | 3 | 0.4977 | 0.2027 | 0.1999 | 0.7816 | 0.9083 |  | 12481.6667 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| few_shot | Few-shot | 3 | 0.4574 | 0.1922 | 0.2074 | 0.7801 | 0.923 |  | 12815.3333 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| cot | Chain-of-Thought | 3 | 0.4953 | 0.1945 | 0.1898 | 0.7789 | 0.9507 |  | 14532.6667 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
+| tot | Tree-of-Thought (3x2) | 3 | 0.4884 | 0.1917 | 0.1946 | 0.776 | 0.908 |  | 76182 | groq/openai/gpt-oss-120b | groq/qwen/qwen3.8-27b |
 
 ### exp3_sampling
 
